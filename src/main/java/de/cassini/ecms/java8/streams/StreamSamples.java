@@ -1,9 +1,11 @@
 package de.cassini.ecms.java8.streams;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
@@ -19,6 +21,8 @@ public class StreamSamples {
 		StreamSamples me = new StreamSamples();
 		
 		me.funWithIntStreams();
+		
+		me.funWithStrings();
 	}
 
 	/**
@@ -59,6 +63,56 @@ public class StreamSamples {
         System.out.printf("Sum of all numbers: %s%n", stats.getSum());
         System.out.printf("Average of all numbers: %s%n", stats.getAverage());
 	}
+	
+	private void funWithStrings() {
+		
+		printSeparator();
+		System.out.printf("Fun with Strings.%n");
+		
+        List<String> strList = Arrays.asList("abc", "", "bcd", "", "defg", "jk");
+        
+        // Count the empty strings
+        long count = strList.stream()
+        		.filter(x -> x.isEmpty())
+        		.count();
+        System.out.printf("List %s has %d empty strings %n", strList, count);
+
+        // Count String with length more than 3
+        long num = strList.stream()
+        		.filter(x -> x.length()> 3)
+        		.count();
+        System.out.printf("List %s has %d strings of length more than 3.%n", strList, num);
+     
+     
+        // Count number of String which startswith "a"
+        count = strList.stream()
+        		.filter(x -> x.startsWith("a"))
+        		.count();
+        System.out.printf("List %s has %d strings which start with an 'a'.%n", strList, count);
+     
+        // Remove all empty Strings from List
+        List<String> filtered = strList.stream()
+        		.filter(x -> !x.isEmpty())
+        		.collect(Collectors.toList());
+        System.out.printf("Original List : %s, List without empty Strings: %s.%n", strList, filtered);
+     
+        // Create a List with String more than 2 characters
+        filtered = strList.stream()
+        		.filter(x -> x.length()> 2)
+        		.collect(Collectors.toList());
+        System.out.printf("Original List : %s, filtered list: %s.%n", strList, filtered);
+     
+     
+        // Convert String to Uppercase and join them using coma
+        List<String> _c = Arrays.asList("USA", "Japan", "France", "Germany", "Italy", "U.K.","Canada");
+        String countries = _c.stream()
+        		.map(x -> x.toUpperCase())
+        		.collect(Collectors.joining(", "));
+        
+        System.out.println(countries);
+		System.out.printf("No comma after the last entry! Woah!%n");
+		
+	}
 
 	/**
 	 * @param listSize
@@ -78,7 +132,7 @@ public class StreamSamples {
 	 * 
 	 */
 	private void printSeparator() {
-		System.out.printf("------------------------%n");
+		System.out.printf("%n------------------------%n");
 	}
 	
 	
