@@ -35,10 +35,10 @@ public class StreamSamples {
 		
 		List<Integer> ints = makeRandomInts(200);
 		
-		long evenNumbers = ints.stream()		// get the stream - lazy
-				.mapToInt(Integer::intValue)	// make it a special int stream, method reference - lazy
-				.filter(i -> i%2==0)			// filter it - lazy
-				.count();						// get the values - terminal
+		long evenNumbers = ints.stream()        // get the stream - lazy
+				.mapToInt(Integer::intValue)    // make it a special int stream, method reference - lazy
+				.filter(i -> i%2==0)            // filter it - lazy
+				.count();                       // get the values - terminal
 		
 		System.out.printf("We got %s even numbers this time.%n%n", evenNumbers);
 		
