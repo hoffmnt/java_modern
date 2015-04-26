@@ -40,7 +40,7 @@ public class ComparatorExample {
 		// lambda style
 		System.out.println("\n=== lambda style (first name) ===");
 		Collections.sort(people, (p1, p2) -> p1.getVorname().compareTo(p2.getVorname()));
-		people.forEach(p -> System.out.println(p));
+		people.forEach(System.out::println);
 		
 	}
 
@@ -49,7 +49,7 @@ public class ComparatorExample {
 		System.out.printf("%n=== people sorted by age ===%n");
 		List<Person> people = Delivery.getPeopleAsList();
 		Collections.sort(people, (p1, p2) -> p1.getGeburtstag().compareTo(p2.getGeburtstag()));
-		people.forEach(p->System.out.printf("%s%n",p));
+		people.forEach(System.out::println);
 		
 		System.out.printf("%n=== people sorted by brithday in a given year ===%n");
 		Collections.sort(people, 

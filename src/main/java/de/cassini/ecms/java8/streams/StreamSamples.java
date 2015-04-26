@@ -21,8 +21,8 @@ public class StreamSamples {
 		StreamSamples me = new StreamSamples();
 		
 		me.funWithIntStreams();
-		
 		me.funWithStrings();
+		me.oneTimeGenerator();
 	}
 
 	/**
@@ -104,7 +104,7 @@ public class StreamSamples {
      
      
         // Convert String to Uppercase and join them using coma
-        List<String> _c = Arrays.asList("USA", "Japan", "France", "Germany", "Italy", "U.K.","Canada");
+        List<String> _c = Arrays.asList("USA", "Japan", "France", "Germany", "Italy", "U.K.", "Canada");
         String countries = _c.stream()
         		.map(x -> x.toUpperCase())
         		.collect(Collectors.joining(", "));
@@ -112,6 +112,12 @@ public class StreamSamples {
         System.out.println(countries);
 		System.out.printf("No comma after the last entry! Woah!%n");
 		
+	}
+	
+	private void oneTimeGenerator() {
+		
+		IntStream stream = IntStream.iterate(1, i -> i+1);
+		stream.skip(8).limit(10).map(i -> i*i).forEach(System.out::println);
 	}
 
 	/**
