@@ -2,9 +2,12 @@ package de.cassini.ecms.java8.datetime;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.Month;
 import java.time.MonthDay;
+import java.time.YearMonth;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +23,20 @@ public class DateTimeExamples {
 		
 		birthdayStuff();
 		
+		timeStuff();
+		
+		yearMonthStuff();
+		
+	}
+
+	private static void yearMonthStuff() {
+
+		YearMonth currentYearMonth = YearMonth.now(); 
+		System.out.printf("Days in month year %s: %d%n", currentYearMonth, currentYearMonth.lengthOfMonth());
+		
+		YearMonth creditCardExpiry = YearMonth.of(2018, Month.FEBRUARY);
+		System.out.printf("Your credit card expires on %s %n", creditCardExpiry); 
+
 	}
 
 	private static void dateOnlyStuff() {
@@ -45,16 +62,20 @@ public class DateTimeExamples {
 		// So war's früher
 		Calendar cal = Calendar.getInstance();
 		cal.set(Calendar.YEAR, 2006);
-		cal.set(Calendar.MONTH, 6);
+		cal.set(Calendar.MONTH, 6); // yeah, 0-based month field
 		cal.set(Calendar.DAY_OF_MONTH, 1);
 		
 		Date oldGruendung = cal.getTime();
 		
 		// zwischen alt und neu wechseln
+		// das ist alles andere als kanonisch, what the heck
 		LocalDate newGruendung = Instant.ofEpochMilli(oldGruendung.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
 		
-		// Sind sie gleich?
-		System.out.printf("gruendung.equals(newGruendung) ist %s%n%n", gruendung.equals(newGruendung));
+		// Sind sie gleich? Equals geht ...
+		System.out.printf("gruendung.equals(newGruendung) ist %s%n", gruendung.equals(newGruendung));
+		
+		// Jahre später
+		System.out.printf("Sieben Jahre später: %s.%n", gruendung.plus(7, ChronoUnit.YEARS));
 		
 	}
 
@@ -76,5 +97,18 @@ public class DateTimeExamples {
 		);
 	
 	}
+	
+	private static void timeStuff() {
+		
+		LocalTime now = LocalTime.now();
+		LocalTime nyTime = LocalTime.now(ZoneId.of("America/New_York"));
+		
+		System.out.printf("%nJetzt: %s, und in New York: %s.%n", now, nyTime);
+		int stunde = 2;
+		System.out.printf("In %s Stunden ist es %s.%n", stunde, now.plusHours(stunde));
+		
+		
+	}
+
 
 }

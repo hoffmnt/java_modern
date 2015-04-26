@@ -1,5 +1,6 @@
 package de.cassini.ecms.java8.streams;
 
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.IntSummaryStatistics;
@@ -23,6 +24,8 @@ public class StreamSamples {
 		me.funWithIntStreams();
 		me.funWithStrings();
 		me.oneTimeGenerator();
+		
+		ZoneId.getAvailableZoneIds().stream().sorted().forEach(System.out::println);
 	}
 
 	/**
