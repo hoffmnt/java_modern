@@ -22,7 +22,7 @@ public class ComparatorExample {
 		List<Person> people = Delivery.getPeopleAsList();
 		
 		// old style
-		System.out.printf("%n=== classic code ===");
+		System.out.printf("%n=== classic code ===%n");
 		Collections.sort(people, new Comparator<Person>() {
 
 			@Override
