@@ -1,4 +1,4 @@
-package tryWithResource;
+package de.cassini.ecms.java8.tryWithResource;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
